@@ -1,57 +1,57 @@
 # 🎲 Lotto Quest
 
-**A roguelike-style browser game about risk, luck and the house edge.**
-Climb a branching map, pick your fights, roll the D100, and see how many points you can walk away with — if the odds let you.
+**Przeglądarkowa gra w stylu roguelike.**
+Wspinaj się po rozgałęzionej mapie, wybieraj walki, rzucaj kością D100 i sprawdź, z iloma punktami uda ci się wyjść — jeśli szanse na to pozwolą.
 
-Built with [Phaser 3](https://phaser.io/) during **Hackathon Bydgoszcz 2025**.
+Stworzona w [Phaser 3](https://phaser.io/) podczas **Hackathonu Bydgoszcz 2025**.
 
-<!-- Tip: add a screenshot or GIF here, e.g. ![Gameplay](docs/screenshot.png) -->
+<!-- Wskazówka: dodaj tu screenshot albo GIF, np. ![Rozgrywka](docs/screenshot.png) -->
 
 ---
 
-## 🕹️ How to play
+## 🕹️ Jak grać
 
-1. Click **GRAJ** (Play) and enter your name.
-2. You start at the campfire with **100 points** and **3 lives** ❤️.
-3. Each level you choose one of up to three paths with the arrow keys:
+1. Kliknij **GRAJ** i wpisz swoją nazwę.
+2. Zaczynasz przy ognisku ze **100 punktami** i **3 życiami** ❤️.
+3. Na każdym poziomie wybierasz jedną z maksymalnie trzech ścieżek strzałkami:
 
-   | Key | Move |
-   |-----|------|
-   | `←` | left path |
-   | `↑` | middle path |
-   | `→` | right path |
+   | Klawisz | Ruch |
+   |---------|------|
+   | `←` | lewa ścieżka |
+   | `↑` | środkowa ścieżka |
+   | `→` | prawa ścieżka |
 
-4. Entering a monster's territory triggers a **D100 roll**. Every monster shows its target (e.g. `D65+`) — roll that number or higher to win.
-5. Reach the **Boss** at the top of the map for a final coin flip: **×2** your points or **×0.5**.
-6. Your final score goes to the local **Top 10** leaderboard.
+4. Wejście na teren potwora oznacza **rzut kością D100**. Każdy potwór ma widoczny próg (np. `D65+`) — wyrzuć tyle albo więcej, żeby wygrać.
+5. Dotrzyj do **Bossa** na szczycie mapy i zagraj o wszystko rzutem monetą: punkty **×2** albo **×0,5**.
+6. Twój wynik trafia do lokalnego rankingu **Top 10**.
 
-The game ends early if you lose all 3 lives or your points drop to almost zero — in that case your score is 0.
+Gra kończy się wcześniej, jeśli stracisz wszystkie 3 życia albo twoje punkty spadną prawie do zera — wtedy wynik wynosi 0.
 
-## 👹 Monsters
+## 👹 Potwory
 
-| Monster | Win chance | On win | On loss |
-|---------|-----------|--------|---------|
-| 🟢 **Low risk** | 60–90% | small gain | lose 20–35% of points + 1 life |
-| 🔴 **High risk** | 20–50% | big gain | lose 50–80% of points + 1 life |
-| 💀 **Boss** | 50% | points ×2 | points ×0.5 |
+| Potwór | Szansa na wygraną | Wygrana | Przegrana |
+|--------|------------------|---------|-----------|
+| 🟢 **Niskie ryzyko** | 60–90% | mały zysk | tracisz 20–35% punktów i 1 życie |
+| 🔴 **Wysokie ryzyko** | 20–50% | duży zysk | tracisz 50–80% punktów i 1 życie |
+| 💀 **Boss** | 50% | punkty ×2 | punkty ×0,5 |
 
-Every monster's odds are randomised, so the target number on each one matters — read the map before you move.
+Szanse każdego potwora są losowane od nowa, więc liczba nad nim ma znaczenie — przyjrzyj się mapie, zanim ruszysz.
 
-## 📐 The math behind it
+## 📐 Matematyka w tle
 
-Lotto Quest isn't just random — it's built on a real gambling model. Each regular encounter has a **return-to-player (RTP) of 85%**:
+Lotto Quest to nie tylko losowość — pod spodem działa prawdziwy model gry hazardowej. Każde zwykłe starcie ma **RTP (zwrot dla gracza) na poziomie 85%**:
 
 ```
-gain = (1 − winChance) × lossPercent / winChance × RTP
+zysk = (1 − szansaWygranej) × procentStraty / szansaWygranej × RTP
 ```
 
-That means every regular fight has a **negative expected value**: on average, the more you play, the more you lose — exactly like real games of chance. High-risk monsters pay more, but don't beat the house. The only bet in your favour is the Boss (expected value ×1.25), so the real question is: *can you get there with something left?*
+Oznacza to, że każda zwykła walka ma **ujemną wartość oczekiwaną**: średnio im dłużej grasz, tym więcej tracisz — dokładnie jak w prawdziwych grach losowych. Potwory wysokiego ryzyka płacą więcej, ale nie pokonają „kasyna”. Jedyny zakład na twoją korzyść to Boss (wartość oczekiwana ×1,25), więc prawdziwe pytanie brzmi: *czy dojdziesz do niego z czymkolwiek w kieszeni?*
 
-The game also shows "near misses" (*O MAŁY WŁOS!*) — the kind of feedback real gambling products use to keep players going. Notice how it feels.
+Gra pokazuje też komunikaty „O MAŁY WŁOS!” — ten sam rodzaj informacji zwrotnej, którego używają prawdziwe produkty hazardowe, żeby zatrzymać gracza przy grze. Zwróć uwagę, jak to działa na ciebie.
 
-## 🚀 Running locally
+## 🚀 Uruchomienie lokalnie
 
-No build step, no dependencies to install — Phaser is loaded from a CDN.
+Bez budowania i bez instalowania zależności — Phaser ładuje się z CDN.
 
 ```bash
 git clone https://github.com/pilarhz/Lotto-Quest.git
@@ -59,32 +59,28 @@ cd Lotto-Quest
 python3 -m http.server 8000
 ```
 
-Then open <http://localhost:8000>.
+Następnie otwórz <http://localhost:8000>.
 
-> Opening `index.html` directly from disk may fail to load images in some browsers, so serve the folder with any local web server (Python, `npx serve`, VS Code Live Server…).
+> Otwarcie `index.html` bezpośrednio z dysku może w niektórych przeglądarkach blokować ładowanie grafik, dlatego uruchom folder przez dowolny lokalny serwer (Python, `npx serve`, Live Server w VS Code…).
 
-## 📁 Project structure
+## 📁 Struktura projektu
 
 ```
 Lotto-Quest/
-├── index.html    # page shell + player-name overlay
-├── main.js       # game logic: odds model, scenes, leaderboard
-├── style.css     # overlay and page styling
-└── assets/       # map, monsters, boss, player sprite, campfire
+├── index.html    # szkielet strony + okno wpisywania nazwy gracza
+├── main.js       # logika gry: model szans, sceny, ranking
+├── style.css     # wygląd strony i okna nakładki
+└── assets/       # mapa, potwory, boss, postać gracza, ognisko
 ```
 
-Scenes: `PreloadScene` → `MenuScene` → `GameScene` / `RulesScene` / `LeaderboardScene`.
-Scores are saved in the browser's `localStorage` (key `lottoScores`), so the leaderboard is per device.
+Sceny: `PreloadScene` → `MenuScene` → `GameScene` / `RulesScene` / `LeaderboardScene`.
+Wyniki są zapisywane w `localStorage` przeglądarki (klucz `lottoScores`), więc ranking jest osobny dla każdego urządzenia.
 
-## 🛠️ Tech stack
+## 🛠️ Technologie
 
-- [Phaser 3.87](https://phaser.io/) (Arcade Physics, tweens, cameras)
-- Vanilla JavaScript, HTML, CSS
-
-## 🌐 Language
-
-The in-game interface is in **Polish**.
+- [Phaser 3.87](https://phaser.io/) (Arcade Physics, tweeny, kamery)
+- Czysty JavaScript, HTML, CSS
 
 ---
 
-Made with ☕ and dice at Hackathon Bydgoszcz 2025.
+Zrobione z ☕ i kośćmi do gry na Hackathonie Bydgoszcz 2025.
