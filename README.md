@@ -81,6 +81,3 @@ Wyniki są zapisywane w `localStorage` przeglądarki (klucz `lottoScores`), wię
 - [Phaser 3.87](https://phaser.io/) (Arcade Physics, tweeny, kamery)
 - Czysty JavaScript, HTML, CSS
 
----
-
-Zrobione z ☕ i kośćmi do gry na Hackathonie Bydgoszcz 2025.
